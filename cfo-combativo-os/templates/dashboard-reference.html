@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFO Combativo — Dashboard Financeiro</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha384-9nhczxUqK87bcKHh20fSQcTGD4qq5GhayNYSYWqwBkINBhOfQLg/P5HG5lF1urn4" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+  :root{
+    --base:#101010; --surface:#1a1a1a; --surface2:#222; --line:#2e2e2e;
+    --lime:#CCFF00; --text:#f2f2f2; --muted:#8a8a8a;
+    --green:#3ddc84; --amber:#ffc043; --red:#ff5252;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--base);color:var(--text);font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;padding:28px;line-height:1.5}
+  .wrap{max-width:1180px;margin:0 auto}
+  header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--lime);padding-bottom:16px;margin-bottom:28px}
+  .brand{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--lime);font-weight:700}
+  h1{font-size:26px;font-weight:800;margin-top:4px}
+  .meta{text-align:right;color:var(--muted);font-size:12px}
+  .meta b{color:var(--text)}
+  h2{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:34px 0 14px;font-weight:700}
+  .grid{display:grid;gap:16px}
+  .kpis{grid-template-columns:repeat(4,1fr)}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card .label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+  .card .val{font-size:26px;font-weight:800;margin:6px 0 2px}
+  .card .sub{font-size:12px;color:var(--muted)}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .g{background:var(--green)}.a{background:var(--amber)}.r{background:var(--red)}
+  .green{color:var(--green)}.amber{color:var(--amber)}.red{color:var(--red)}
+  .two{grid-template-columns:1fr 1fr}
+  .chartbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;min-height:300px}
+  .chartbox h3{font-size:14px;margin-bottom:14px;font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;color:var(--muted);font-weight:600;text-transform:uppercase;font-size:10px;letter-spacing:1px;padding:8px;border-bottom:1px solid var(--line)}
+  td{padding:9px 8px;border-bottom:1px solid var(--line)}
+  .alert{border-left:3px solid var(--amber);background:rgba(255,192,67,.07);padding:14px 16px;border-radius:8px;font-size:13px;margin-top:8px}
+  .alert.crit{border-color:var(--red);background:rgba(255,82,82,.07)}
+  .alert b{color:var(--text)}
+  .disclaimer{font-size:11px;color:var(--muted);font-style:italic;margin-top:10px;padding:10px;border:1px dashed var(--line);border-radius:8px}
+  .pill{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .pill.ok{background:rgba(61,220,132,.15);color:var(--green)}
+  .pill.warn{background:rgba(255,192,67,.15);color:var(--amber)}
+  .pill.bad{background:rgba(255,82,82,.15);color:var(--red)}
+  footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:11px;text-align:center}
+  .accent{color:var(--lime)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <div class="brand">CFO Combativo</div>
+      <h1>Dashboard Financeiro — Visão Consolidada</h1>
+    </div>
+    <div class="meta">
+      Entidade: <b>EMPRESA EXEMPLO LTDA</b> + PF<br>
+      Competência: <b>Abril/2026</b><br>
+      Gerado em: <b>29/05/2026</b> · <span class="accent">dados ilustrativos</span>
+    </div>
+  </header>
+
+  <h2>Resumo Executivo</h2>
+  <div class="grid kpis">
+    <div class="card"><div class="label">Saldo em Caixa</div><div class="val">R$ 184.320</div><div class="sub"><span class="dot g"></span>cobre 2,4 meses de despesa</div></div>
+    <div class="card"><div class="label">Liquidez Corrente</div><div class="val green">1,68</div><div class="sub"><span class="dot g"></span>saudável (&gt; 1,5)</div></div>
+    <div class="card"><div class="label">Ciclo Financeiro</div><div class="val amber">42 dias</div><div class="sub"><span class="dot a"></span>PMR alto pressiona caixa</div></div>
+    <div class="card"><div class="label">Dívida Líq./EBITDA</div><div class="val amber">2,1x</div><div class="sub"><span class="dot a"></span>atenção ao endividamento</div></div>
+  </div>
+
+  <h2>Fluxo de Caixa — Realizado e Projetado</h2>
+  <div class="chartbox"><canvas id="fluxo" height="110"></canvas>
+    <div class="alert"><b>Alerta de projeção:</b> mantido o ritmo atual de pagamentos, o saldo projetado fica <b>negativo em ~18/06</b>. Antecipar recebíveis de maior valor ou renegociar 2 vencimentos cobre o vão.</div>
+  </div>
+
+  <h2>Contas a Receber × A Pagar (aging)</h2>
+  <div class="grid two">
+    <div class="chartbox"><h3>Aging Recebíveis</h3><canvas id="ar"></canvas></div>
+    <div class="chartbox"><h3>Aging Pagamentos</h3><canvas id="ap"></canvas></div>
+  </div>
+
+  <h2>⚠️ Análise de Crédito — Taxas Contratadas × Banco Central (munição comparativa)</h2>
+  <div class="chartbox">
+    <table>
+      <tr><th>Contrato</th><th>Modalidade</th><th>Taxa contratada</th><th>Média BCB (abr/26)</th><th>Discrepância</th><th>Sinal</th></tr>
+      <tr><td>Capital de giro — Banco A</td><td>Giro até 365d</td><td>28,9% a.a.</td><td>26,4% a.a.</td><td>+9,5%</td><td><span class="pill warn">Negociável</span></td></tr>
+      <tr><td>Empréstimo — Banco B</td><td>Crédito pessoal PF</td><td>92,0% a.a.</td><td>54,2% a.a.</td><td>+69,7%</td><td><span class="pill bad">Discrepância relevante</span></td></tr>
+      <tr><td>Financ. veículo — Banco C</td><td>Aquisição veículos</td><td>24,1% a.a.</td><td>25,8% a.a.</td><td>−6,6%</td><td><span class="pill ok">Em mercado</span></td></tr>
+    </table>
+    <div class="alert crit"><b>Contrato Banco B:</b> a taxa supera em <b>69,7%</b> a média de mercado da modalidade, ultrapassando o patamar de uma vez e meia que os tribunais usam como gatilho de atenção. Os juros levarão o montante pago a <b>~2,3× o principal</b>. <b>Recomenda-se reunião com o gerente para reavaliação</b> e, persistindo, assessoria jurídica especializada.</div>
+    <div class="disclaimer">Este painel é estritamente comparativo, baseado nas séries oficiais do Banco Central (SGS). A superação da taxa média de mercado <b>não constitui, por si só, afirmação de abusividade ou ilegalidade</b> — o STJ (REsp 1.061.530/RS, Tema 27) exige demonstração no caso concreto. Qualquer discussão revisional deve ser conduzida por assessoria jurídica especializada. O plugin gera dados, não parecer.</div>
+  </div>
+
+  <h2>Saúde de Margem por Produto (benchmark de preços)</h2>
+  <div class="chartbox"><canvas id="margem" height="90"></canvas>
+    <div class="alert"><b>2 produtos abaixo do ponto de equilíbrio.</b> "Serviço Express" opera com margem de −4%. Reprecificação para +12% recupera R$ 6.800/mês sem perda estimada de volume na faixa da categoria.</div>
+  </div>
+
+  <footer>
+    CFO Combativo · gerado localmente · nenhum dado transmitido sem confirmação ·
+    base de mercado: Banco Central do Brasil (SGS) · <span class="accent">ecossistema IA Combativa</span>
+  </footer>
+</div>
+
+<script>
+Chart.defaults.color='#8a8a8a';Chart.defaults.borderColor='#2e2e2e';Chart.defaults.font.family="-apple-system,Segoe UI,Roboto,sans-serif";
+const lime='#CCFF00',green='#3ddc84',amber='#ffc043',red='#ff5252';
+
+new Chart(document.getElementById('fluxo'),{type:'line',data:{
+  labels:['01/04','08/04','15/04','22/04','29/04','06/05 (proj)','13/05 (proj)','18/06 (proj)'],
+  datasets:[{label:'Saldo realizado',data:[152000,168000,159000,178000,184320,null,null,null],borderColor:lime,backgroundColor:'rgba(204,255,0,.08)',fill:true,tension:.3},
+  {label:'Saldo projetado',data:[null,null,null,null,184320,140000,72000,-15000],borderColor:amber,borderDash:[6,4],tension:.3}]},
+  options:{plugins:{legend:{labels:{boxWidth:12}}},scales:{y:{ticks:{callback:v=>'R$ '+(v/1000)+'k'}}}}});
+
+const agingOpts={plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>'R$ '+(v/1000)+'k'}}}};
+new Chart(document.getElementById('ar'),{type:'bar',data:{labels:['A vencer','1-30d','31-60d','61-90d','+90d'],
+  datasets:[{data:[88000,34000,19000,8000,12000],backgroundColor:[green,green,amber,amber,red]}]},options:agingOpts});
+new Chart(document.getElementById('ap'),{type:'bar',data:{labels:['A vencer','Vence 7d','Vencido','—','—'],
+  datasets:[{data:[62000,41000,9000,0,0],backgroundColor:[green,amber,red,'#222','#222']}]},options:agingOpts});
+
+new Chart(document.getElementById('margem'),{type:'bar',data:{
+  labels:['Produto A','Produto B','Serviço Premium','Serviço Express','Produto C','Kit D'],
+  datasets:[{label:'Margem %',data:[38,27,44,-4,19,8],backgroundColor:d=>0,
+    backgroundColor:['#3ddc84','#3ddc84','#3ddc84','#ff5252','#ffc043','#ffc043']}]},
+  options:{plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>v+'%'}}}}});
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+{
+  "_comment": "EXEMPLO de grafo multi-entidade do cfo-combativo-os. Dados 100% FICTICIOS (documentos invalidos, mascarados). NAO e um arquivo de runtime — o real e gerado por /cfo-setup em <cwd>/.cfo/cfo-state.json (gitignored, LGPD). Serve so de referencia de schema (design-spec secao 6). Grafo: 2 PF (grupo-familia) + 2 PJ (grupo-empresas).",
+  "schema_version": "1.0.0",
+  "plugin_version": "0.1.0",
+  "created_at": "2026-05-29T12:00:00Z",
+  "updated_at": "2026-05-29T12:00:00Z",
+  "perfil": "ambos",
+  "entidades": [
+    {
+      "id": "empresa-alfa",
+      "tipo": "pj",
+      "nome": "Empresa Alfa Servicos Ltda",
+      "doc_mascarado": "**.***.**1/0001-**",
+      "regime_tributario": "simples",
+      "grupo_id": "grupo-empresas",
+      "inicio": "2026-01",
+      "contas": [
+        { "id": "itau-cc-001", "banco": "itau", "tipo": "cc", "apelido": "Itau PJ Alfa" },
+        { "id": "inter-cartao-001", "banco": "inter", "tipo": "cartao", "apelido": "Cartao Inter Alfa" }
+      ]
+    },
+    {
+      "id": "empresa-beta",
+      "tipo": "pj",
+      "nome": "Beta Comercio e Participacoes Ltda",
+      "doc_mascarado": "**.***.**2/0001-**",
+      "regime_tributario": "presumido",
+      "grupo_id": "grupo-empresas",
+      "inicio": "2026-01",
+      "contas": [
+        { "id": "bb-cc-002", "banco": "bb", "tipo": "cc", "apelido": "BB PJ Beta" }
+      ]
+    },
+    {
+      "id": "joao",
+      "tipo": "pf",
+      "nome": "Joao (PF)",
+      "doc_mascarado": "***.***.**1-**",
+      "regime_tributario": null,
+      "grupo_id": "grupo-familia",
+      "inicio": "2026-01",
+      "contas": [
+        { "id": "nubank-001", "banco": "nubank", "tipo": "cc", "apelido": "Nubank Joao" },
+        { "id": "xp-invest-001", "banco": "xp", "tipo": "investimento", "apelido": "XP Joao" }
+      ]
+    },
+    {
+      "id": "maria",
+      "tipo": "pf",
+      "nome": "Maria (PF)",
+      "doc_mascarado": "***.***.**2-**",
+      "regime_tributario": null,
+      "grupo_id": "grupo-familia",
+      "inicio": "2026-02",
+      "contas": [
+        { "id": "c6-cc-002", "banco": "c6", "tipo": "cc", "apelido": "C6 Maria" }
+      ]
+    }
+  ],
+  "grupos": [
+    { "id": "grupo-empresas", "nome": "Grupo de Empresas", "tipo": "pj" },
+    { "id": "grupo-familia", "nome": "Familia", "tipo": "pf" }
+  ],
+  "contabilidade": {
+    "nome": "Contabilidade Exemplo (ficticia)",
+    "email": "contato@contabilidade-exemplo-ficticia.invalid",
+    "avisar_antes_envio": true
+  },
+  "tools": {
+    "email_provider": "gmail",
+    "banco_psp": null,
+    "contabilidade_sistema": null,
+    "outras": []
+  },
+  "preferences": {
+    "idioma": "pt-BR",
+    "moeda": "BRL",
+    "recorte_default": "total",
+    "lgpd_aviso_aceito": true,
+    "mascarar_em_log": true
+  },
+  "metas": [
+    {
+      "id": "reserva-emergencia-joao",
+      "entidade_id": "joao",
+      "descricao": "Reserva de emergencia (6 meses de despesa)",
+      "alvo": 60000.0,
+      "prazo": "2026-12",
+      "acumulado": 12000.0
+    }
+  ],
+  "wizard_state": {
+    "completed": true,
+    "current_step": "concluido"
+  }
+}

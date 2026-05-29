@@ -1,0 +1,14 @@
+{
+  "SessionStart": [
+    {
+      "matcher": "",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "echo '[cfo-combativo-os] CFO senior ativo. /cfo <pergunta> (quanto posso gastar, meu caixa aguenta, essa taxa ta cara) | /cfo-setup configura entidades (PF+PJ multi-entidade). 24 skills: ingestao, fluxo de caixa, KPIs, AP/AR, credito vs BCB, consolidacao, provisoes, anomalias, dashboard, triagem contabil (gate de envio). Municao nunca veredito. Orquestrador: cfo-master.'",
+          "timeout": 5
+        }
+      ]
+    }
+  ]
+}

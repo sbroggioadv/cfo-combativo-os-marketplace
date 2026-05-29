@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "cfo-combativo-os-marketplace",
+  "description": "Marketplace oficial do plugin CFO Combativo OS — um CFO senior terceirizado dentro do Claude Code para qualquer pessoa fisica e juridica.",
+  "owner": {
+    "name": "IA Combativa"
+  },
+  "plugins": [
+    {
+      "name": "cfo-combativo-os",
+      "source": "./cfo-combativo-os",
+      "description": "CFO senior terceirizado para PF + PJ multi-entidade. Le extratos (OFX/CSV/XLSX), notas fiscais e contratos de credito; concilia, analisa e devolve diagnostico, municao decisoria e dashboards HTML. 24 skills: fluxo de caixa, KPIs de CFO, contas a pagar/receber, credito vs taxas do Banco Central, consolidacao multi-entidade (por entidade, por grupo e total), provisoes, orcamento, deteccao de anomalias, capacidade de credito, carga tributaria, triagem e envio a contabilidade com gate humano. Responde quanto posso gastar este mes, cria metas de poupanca e investimento. 100% local, anti-halucinacao por design (taxas oficiais ao vivo, nunca fabricadas), dado sensivel sob LGPD/LC 105. Municao nunca veredito de ilegalidade. Orquestrador cfo-master + auditoria-cfo R1-R4.",
+      "author": { "name": "IA Combativa" }
+    }
+  ]
+}

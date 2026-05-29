@@ -1,0 +1,19 @@
+{
+  "description": "Regras de auto-classificacao de transacao por heuristica (descricao + contraparte). Sempre exibivel/corrigivel pelo operador. NUNCA classifica com falsa confianca — em duvida, marca 'a_classificar'.",
+  "versao": "1.0.0",
+  "categorias": [
+    "receita", "custo", "despesa-fixa", "despesa-variavel", "tributo",
+    "financeiro", "investimento", "pro-labore", "transferencia-intragrupo",
+    "tarifa-bancaria", "emprestimo", "a_classificar"
+  ],
+  "regras_heuristicas": {
+    "tributo": ["DARF", "DAS", "GPS", "GARE", "ISS", "ICMS", "IPTU", "IPVA", "INSS", "FGTS", "SIMPLES"],
+    "tarifa-bancaria": ["TARIFA", "TAR ", "PACOTE SERVICOS", "CESTA", "ANUIDADE", "IOF", "TED ", "DOC "],
+    "financeiro": ["JUROS", "RENDIMENTO", "CDB", "APLICACAO", "RESGATE", "DIVIDENDOS"],
+    "emprestimo": ["EMPRESTIMO", "FINANCIAMENTO", "PARCELA", "CREDITO PESSOAL", "CAPITAL DE GIRO", "CONSIGNADO"],
+    "pro-labore": ["PRO LABORE", "PRO-LABORE", "PROLABORE"],
+    "despesa-fixa": ["ALUGUEL", "CONDOMINIO", "ENERGIA", "AGUA", "INTERNET", "TELEFONE", "FOLHA", "SALARIO", "ASSINATURA"]
+  },
+  "deteccao_transferencia_intragrupo": "Quando contraparte (nome/doc) casa com outra ENTIDADE do MESMO grupo no cfo-state.json, marca is_transferencia_intragrupo=true. Eliminada nos recortes grupo/total.",
+  "nota": "Heuristica e ponto de partida. Operador confirma/corrige. Sem match confiavel => 'a_classificar', nunca chute."
+}

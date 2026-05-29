@@ -1,0 +1,29 @@
+{
+  "description": "Mapa de codigos SGS do Banco Central do Brasil. O plugin BUSCA AO VIVO via API publica; NUNCA chumba a taxa aqui (trava 4 anti-halucinacao). Valores sao buscados em runtime por bcb_client.py com cache TTL.",
+  "endpoint": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados/ultimos/{N}?formato=json",
+  "endpoint_periodo": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados?formato=json&dataInicial={dd/MM/yyyy}&dataFinal={dd/MM/yyyy}",
+  "auth": "publico, sem chave",
+  "cache_ttl_horas": 24,
+  "validado_vivo_em": "2026-05 (data-base do spec)",
+  "series": {
+    "credito": {
+      "capital_giro_pj_ate_365": {"codigo": 20722, "unidade": "% a.a.", "descricao": "Capital de giro PJ ate 365 dias", "perfil": "pj"},
+      "capital_giro_pj_acima_365": {"codigo": 20723, "unidade": "% a.a.", "descricao": "Capital de giro PJ acima de 365 dias", "perfil": "pj"},
+      "credito_pessoal_nao_consignado_pf": {"codigo": 25464, "unidade": "% a.a.", "descricao": "Credito pessoal nao consignado PF", "perfil": "pf"},
+      "aquisicao_veiculos_pf": {"codigo": 20749, "unidade": "% a.a.", "descricao": "Aquisicao de veiculos PF", "perfil": "pf"},
+      "financiamento_imobiliario_pf": {"codigo": 25497, "unidade": "% a.a.", "descricao": "Financiamento imobiliario PF (mercado)", "perfil": "pf"},
+      "credito_pf_total": {"codigo": 20716, "unidade": "% a.a.", "descricao": "Credito PF - Total", "perfil": "pf"}
+    },
+    "macro": {
+      "selic_meta": {"codigo": 432, "unidade": "% a.a.", "descricao": "Selic meta"},
+      "cdi_diario": {"codigo": 12, "unidade": "% a.d.", "descricao": "CDI diario"},
+      "ipca_mensal": {"codigo": 433, "unidade": "% mes", "descricao": "IPCA variacao mensal"},
+      "igpm_mensal": {"codigo": 189, "unidade": "% mes", "descricao": "IGP-M variacao mensal"}
+    }
+  },
+  "gatilho_juridico": {
+    "fonte": "STJ Tema repetitivo 27 / REsp 1.061.530/RS",
+    "regra": "Superar a taxa media de mercado NAO caracteriza abusividade. Gatilho pratico dos tribunais: 1,5x (50% acima) a media como ponto de atencao.",
+    "limiar_atencao_multiplicador": 1.5
+  }
+}

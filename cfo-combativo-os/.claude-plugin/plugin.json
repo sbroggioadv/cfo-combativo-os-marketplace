@@ -1,0 +1,8 @@
+{
+  "name": "cfo-combativo-os",
+  "version": "0.1.0",
+  "description": "CFO senior terceirizado dentro do Claude Code para qualquer pessoa fisica e juridica. Le seus dados financeiros brutos (extratos OFX/CSV/XLSX, NF-e/NFS-e, contratos de credito, tabela de precos), normaliza para um schema canonico de transacao, concilia, e devolve diagnostico, municao decisoria e dashboards HTML standalone. Multi-entidade desde o setup: PF + conjuge + N empresas, agrupaveis em grupo de pessoas e grupo de empresas, com leitura por entidade, por grupo e total consolidado. 24 skills em 6 camadas: ingestao, analise (fluxo de caixa, KPIs de CFO, AP/AR, benchmark de precos, credito vs taxas Banco Central, indicadores de mercado, consolidacao multi-entidade), tributario informativo, provisoes PF+PJ, orcamento x realizado, deteccao de anomalias, capacidade de credito, relatorio executivo narrado, triagem e envio a contabilidade com gate de confirmacao humana. Responde quanto posso gastar este mes, ajuda a criar metas de poupanca e investimento. 100% local, anti-halucinacao por design (indices e taxas oficiais, nunca fabricados), dado sensivel tratado sob LGPD/LC 105. Modulo de credito gera munica comparativa, nunca veredito de ilegalidade. Orquestrador cfo-master + auditoria-cfo R1-R4.",
+  "author": {
+    "name": "IA Combativa"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://iacombativa.com/cfo-combativo-os/state-schema.json",
+  "title": "cfo-state.json — grafo multi-entidade (design-spec §6)",
+  "type": "object",
+  "required": [
+    "schema_version", "created_at", "updated_at", "perfil",
+    "entidades", "grupos", "preferences", "wizard_state"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"type": "string"},
+    "plugin_version": {"type": "string"},
+    "created_at": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "workdir": {"type": "string"},
+    "perfil": {"type": "string", "enum": ["pf", "pj", "ambos"]},
+    "entidades": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "tipo"],
+        "additionalProperties": true,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+          "tipo": {"type": "string", "enum": ["pf", "pj"]},
+          "nome": {"type": ["string", "null"]},
+          "doc_mascarado": {"type": ["string", "null"]},
+          "regime_tributario": {
+            "type": ["string", "null"],
+            "enum": ["simples", "presumido", "real", null]
+          },
+          "grupo_id": {"type": ["string", "null"]},
+          "inicio": {"type": ["string", "null"]},
+          "contas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id"],
+              "additionalProperties": true,
+              "properties": {
+                "id": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+                "banco": {"type": ["string", "null"]},
+                "tipo": {
+                  "type": ["string", "null"],
+                  "enum": ["cc", "cartao", "investimento", null]
+                },
+                "apelido": {"type": ["string", "null"]}
+              }
+            }
+          }
+        }
+      }
+    },
+    "grupos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "additionalProperties": true,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+          "nome": {"type": ["string", "null"]},
+          "tipo": {"type": ["string", "null"], "enum": ["pf", "pj", "misto", null]}
+        }
+      }
+    },
+    "contabilidade": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "nome": {"type": ["string", "null"]},
+        "email": {"type": ["string", "null"]},
+        "avisar_antes_envio": {"type": "boolean"}
+      }
+    },
+    "tools": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "email_provider": {"type": ["string", "null"]},
+        "banco_psp": {"type": ["string", "null"]},
+        "contabilidade_sistema": {"type": ["string", "null"]},
+        "outras": {"type": "array"}
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "idioma": {"type": "string"},
+        "moeda": {"type": "string"},
+        "recorte_default": {"type": "string", "enum": ["entidade", "grupo", "total"]},
+        "lgpd_aviso_aceito": {"type": "boolean"},
+        "mascarar_em_log": {"type": "boolean"}
+      }
+    },
+    "metas": {"type": "array"},
+    "wizard_state": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "completed": {"type": "boolean"},
+        "current_step": {"type": "string"},
+        "completed_steps": {"type": "array"},
+        "last_interaction_at": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

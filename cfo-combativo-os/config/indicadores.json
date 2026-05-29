@@ -1,0 +1,39 @@
+{
+  "description": "Formulas e faixas semaforicas dos KPIs de CFO. Consumido por kpi_engine.py e indicadores-kpi. Faixas sao referencias gerais; o comentario de CFO sempre contextualiza ao setor/porte.",
+  "versao": "1.0.0",
+  "convencao_semaforo": {"verde": "saudavel", "amarelo": "atencao", "vermelho": "critico"},
+  "liquidez": {
+    "liquidez_corrente": {"formula": "AC / PC", "faixas": {"verde": ">=1.5", "amarelo": "1.0-1.49", "vermelho": "<1.0"}},
+    "liquidez_seca": {"formula": "(AC - Estoque) / PC", "faixas": {"verde": ">=1.0", "amarelo": "0.7-0.99", "vermelho": "<0.7"}},
+    "liquidez_imediata": {"formula": "Disponivel / PC", "faixas": {"verde": ">=0.5", "amarelo": "0.2-0.49", "vermelho": "<0.2"}}
+  },
+  "endividamento": {
+    "endividamento_geral": {"formula": "Passivo Total / Ativo Total", "faixas": {"verde": "<0.5", "amarelo": "0.5-0.7", "vermelho": ">0.7"}},
+    "divida_liquida_ebitda": {"formula": "Divida Liquida / EBITDA", "faixas": {"verde": "<1.5", "amarelo": "1.5-3.0", "vermelho": ">3.0"}},
+    "alavancagem": {"formula": "Passivo Total / PL", "faixas": {"verde": "<1.0", "amarelo": "1.0-2.0", "vermelho": ">2.0"}},
+    "cobertura_juros_icsd": {"formula": "EBIT / Despesa Financeira", "faixas": {"verde": ">=3.0", "amarelo": "1.5-2.99", "vermelho": "<1.5"}}
+  },
+  "prazos_ciclo": {
+    "pmr": {"formula": "(Contas a Receber / Receita Bruta) * dias_periodo", "unidade": "dias", "interpretacao": "menor e melhor"},
+    "pmp": {"formula": "(Contas a Pagar / Compras) * dias_periodo", "unidade": "dias", "interpretacao": "maior da folego, equilibrar com fornecedor"},
+    "pme": {"formula": "(Estoque / CMV) * dias_periodo", "unidade": "dias", "interpretacao": "menor e melhor"},
+    "ciclo_financeiro": {"formula": "PMR + PME - PMP", "unidade": "dias", "interpretacao": "menor e melhor; negativo e otimo"},
+    "ciclo_conversao_caixa": {"formula": "PMR + PME - PMP", "unidade": "dias", "alias_de": "ciclo_financeiro"}
+  },
+  "rentabilidade": {
+    "margem_bruta": {"formula": "(Receita - CMV) / Receita", "unidade": "%"},
+    "margem_ebitda": {"formula": "EBITDA / Receita", "unidade": "%"},
+    "margem_liquida": {"formula": "Lucro Liquido / Receita", "unidade": "%"},
+    "roi": {"formula": "(Ganho - Investimento) / Investimento", "unidade": "%"},
+    "roe": {"formula": "Lucro Liquido / PL", "unidade": "%"},
+    "roa": {"formula": "Lucro Liquido / Ativo Total", "unidade": "%"},
+    "roic": {"formula": "NOPAT / Capital Investido", "unidade": "%"}
+  },
+  "operacional": {
+    "ponto_equilibrio": {"formula": "Custos Fixos / (1 - (Custos Variaveis / Receita))", "unidade": "R$"},
+    "giro_ativos": {"formula": "Receita / Ativo Total", "unidade": "x"},
+    "giro_estoque": {"formula": "CMV / Estoque Medio", "unidade": "x"},
+    "ticket_medio": {"formula": "Receita / Numero de Vendas", "unidade": "R$"},
+    "ncg": {"formula": "(Contas a Receber + Estoque) - Contas a Pagar", "unidade": "R$", "nome": "Necessidade de Capital de Giro"}
+  }
+}

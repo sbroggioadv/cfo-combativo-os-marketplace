@@ -1,0 +1,16 @@
+{
+  "description": "Textos fixos de compliance injetados pelas skills. Anti-halucinacao, LGPD/LC 105, gate de envio, disclaimer de credito (trava 1). NUNCA editar para suavizar uma trava.",
+  "versao": "1.0.0",
+  "lgpd_aviso_primeira_execucao": "Aviso de tratamento de dados financeiros: extratos, notas fiscais e dados pessoais que voce fornecer sao DADOS PESSOAIS (LGPD) e parte e protegida por sigilo bancario (LC 105/2001). Tudo e processado LOCALMENTE na sua maquina. Nada e transmitido sem uma acao deliberada sua. Logs nao registram numero de conta, CPF/CNPJ completo ou saldo em texto plano. Confirma que entende e autoriza o processamento local destes dados? (s/n)",
+  "disclaimer_credito_fixo": "Este apontamento e estritamente comparativo, baseado nas series oficiais do Banco Central (SGS). A superacao da taxa media de mercado NAO constitui, por si so, afirmacao de abusividade ou ilegalidade — o STJ (REsp 1.061.530/RS, Tema 27) exige demonstracao no caso concreto. Qualquer discussao revisional deve ser conduzida por assessoria juridica especializada. O plugin gera dados, nao parecer juridico.",
+  "credito_semaforo": {
+    "dentro_media": "Taxa em patamar de mercado; sem sinal de discrepancia.",
+    "acima_abaixo_1_5x": "Taxa acima da media de mercado da modalidade; ha espaco para negociacao administrativa com o gerente. A simples superacao da media NAO caracteriza abusividade (STJ, REsp 1.061.530/RS).",
+    "igual_acima_1_5x": "Discrepancia relevante: a taxa supera em {pct}% a media de mercado, ultrapassando o patamar de uma vez e meia que os tribunais usam como gatilho de atencao. Recomenda-se reuniao com o gerente para reavaliacao do contrato e, se persistir, assessoria juridica especializada. Apontamento estritamente comparativo, nao constitui afirmacao de ilegalidade."
+  },
+  "credito_verbos_proibidos": ["ilegal", "abusiva", "abusividade comprovada", "cabe acao revisional", "ajuize", "ajuizar", "processe o banco", "e crime", "nulidade da clausula"],
+  "gate_envio_contabilidade": "O envio a contabilidade deve ser precedido de aviso previo a ela. O pacote esta montado e pronto. Confirma o disparo do e-mail AGORA? (s/n) — Sem confirmacao, nao envio nada e te mostro onde esta o pacote para envio manual.",
+  "indisponibilidade_fonte": "A fonte oficial ({fonte}) nao respondeu agora. NAO vou estimar o numero como se fosse fato (trava anti-halucinacao). Reexecute mais tarde ou informe o valor manualmente se ja o tiver de fonte oficial.",
+  "handoff_tributario": "Consolidacao tributaria e informativa. Planejamento tributario formal (parecer, escolha de regime, reorganizacao) e escopo de assessoria especializada — fora deste plugin.",
+  "handoff_extrajudicial": "Casos de inadimplencia que justificam notificacao extrajudicial ou cobranca judicial sao handoff para o modulo juridico do ecossistema — este plugin sinaliza, nao produz a peca."
+}

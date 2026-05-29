@@ -1,4 +1,4 @@
-# cfo-combativo-os
+# CFO Combativo OS
 
 > Um **CFO senior terceirizado** dentro do Claude Code, para **qualquer pessoa
 > fisica e juridica**. Le seus dados financeiros brutos, processa **localmente**,

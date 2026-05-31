@@ -15,6 +15,8 @@ description: >
   "nova entidade", "criar grupo", "trocar contabilidade", "editar meu setup".
 ---
 
+> **🖱️ Escolhas = botoes:** em campos de **lista fechada** (AREA_FOCO, tom, modo, atualizar/recriar, sim/nao) use a ferramenta **AskUserQuestion** para mostrar **botoes clicaveis** (max. 4 por pergunta; se houver mais, divida em 2). **Texto livre** (nome, OAB, cidade, e-mail) segue como pergunta digitada normal.
+
 # CFO-ONBOARDING — Grafo Multi-Entidade
 
 ## 1. ESCOPO
